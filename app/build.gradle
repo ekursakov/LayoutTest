@@ -1,29 +1,31 @@
-import static ek.layouttest.Deps.*
+import static ek.layouttest.Dependencies.*
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-android {
-    compileSdkVersion Versions.compileSdk
-    defaultConfig {
-        applicationId "ek.layouttest"
-        minSdkVersion Versions.minSdk
-        targetSdkVersion Versions.targetSdk
-        versionCode 1
-        versionName "1.0"
-    }
+android.defaultConfig {
+    applicationId "ek.layouttest"
+    versionCode 1
+    versionName "1.0"
 }
 
 dependencies {
-    implementation kotlinRuntime
+    implementation(
+            kotlinRuntime,
 
-    implementation Support.appCompat
-    implementation Support.transition
-    implementation Support.constraintLayout
+            Support.appCompat,
+            Support.design,
+            Support.transition,
+            Support.constraintLayout,
+            Support.recyclerView,
 
-    implementation rxJava2
-    implementation rxAndroid2
+            rxJava2,
 
-    testImplementation Test.junit
+            Ui.observableScrollView,
+    )
+
+    testImplementation(
+            Test.junit,
+    )
 }

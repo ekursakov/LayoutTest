@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <ek.layouttest.UberScrollLayout
+    <ek.layouttest.view.UberScrollLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -13,7 +14,10 @@
             android:id="@+id/view_1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#5011d3dd" />
+            android:background="#5011d3dd"
+            app:layout_collapsible="true"
+            app:layout_collapsedHeight="20dp"
+            android:visibility="visible" />
 
         <View
             android:id="@+id/view_2"
@@ -26,6 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#5011dd36" />
-    </ek.layouttest.UberScrollLayout>
+    </ek.layouttest.view.UberScrollLayout>
 
 </FrameLayout>

@@ -1,5 +1,4 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-import static ek.layouttest.Deps.*
+import static ek.layouttest.Dependencies.*
 
 buildscript {
     repositories {
@@ -7,11 +6,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath Plugins.androidGradlePlugin
-        classpath Plugins.kotlinPlugin
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath Plugins.android
+        classpath Plugins.kotlin
     }
 }
 
@@ -19,6 +15,20 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+}
+
+allprojects { project ->
+    afterEvaluate {
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion Versions.compileSdk
+                defaultConfig {
+                    minSdkVersion Versions.minSdk
+                    targetSdkVersion Versions.targetSdk
+                }
+            }
+        }
     }
 }
 

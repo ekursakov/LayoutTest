@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                                              xmlns:tools="http://schemas.android.com/tools"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent"
+                                              android:enabled="false"
+                                              tools:context=".MainActivity">
+
+    <ek.layouttest.view.FixedNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="vertical">
+
+        <ek.layouttest.view.UberScrollLayout2
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/view_1"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#5011d3dd"
+                android:visibility="visible"
+                app:layout_2collapsible="true"/>
+
+            <View
+                android:id="@+id/view_2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#50dd4411"
+                app:layout_2collapsedHeight="56dp"
+                app:layout_2collapsible="true"/>
+
+            <View
+                android:id="@+id/view_3"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#501130dd"
+                app:layout_2collapsible="true"/>
+
+            <!--<View-->
+            <!--android:id="@+id/view_4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#5011dd36" />-->
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/view_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#5011dd36">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="t\nt\nt\nt\nt\nt\nt"
+                    android:textSize="85sp"/>
+            </android.support.v4.widget.NestedScrollView>
+        </ek.layouttest.view.UberScrollLayout2>
+    </ek.layouttest.view.FixedNestedScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
