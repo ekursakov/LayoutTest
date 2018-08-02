@@ -58,8 +58,11 @@ public class UberScrollLayout2 extends ViewGroup {
                 if (child.getVisibility() == GONE) {
                     continue;
                 }
-
-                measureChild(child, widthMeasureSpec, MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.AT_MOST));
+                if (child.getLayoutParams().height == LayoutParams.MATCH_PARENT) {
+                    measureChild(child, widthMeasureSpec, MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.EXACTLY));
+                } else {
+                    measureChild(child, widthMeasureSpec, MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.AT_MOST));
+                }
 
                 availableHeight -= getChildCollapsedHeight(child);
                 expandedHeight += child.getMeasuredHeight();
@@ -145,7 +148,7 @@ public class UberScrollLayout2 extends ViewGroup {
             super(c, attrs);
             TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.UberScrollLayout2_Layout);
             collapsible = a.getBoolean(R.styleable.UberScrollLayout2_Layout_layout_2collapsible, false);
-            collapsedHeight = a.getLayoutDimension(R.styleable.UberScrollLayout2_Layout_layout_2collapsedHeight, 0);
+            collapsedHeight = a.getDimensionPixelSize(R.styleable.UberScrollLayout2_Layout_layout_2collapsedHeight, 0);
             a.recycle();
         }
     }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                              xmlns:tools="http://schemas.android.com/tools"
-                                              android:layout_width="match_parent"
-                                              android:layout_height="match_parent"
-                                              android:enabled="false"
-                                              tools:context=".MainActivity">
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:enabled="false"
+    tools:context=".MainActivity">
 
     <ek.layouttest.view.FixedNestedScrollView
         android:layout_width="match_parent"
@@ -39,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="#501130dd"
+                app:layout_2collapsedHeight="56dp"
                 app:layout_2collapsible="true"/>
 
             <!--<View-->
@@ -46,18 +48,27 @@
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent"-->
             <!--android:background="#5011dd36" />-->
-            <android.support.v4.widget.NestedScrollView
-                android:id="@+id/view_4"
+
+            <!--<android.support.v4.widget.NestedScrollView-->
+                <!--android:id="@+id/view_4"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="#5011dd36">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="t\nt\nt\nt\nt\nt\nt"-->
+                    <!--android:textSize="85sp"/>-->
+            <!--</android.support.v4.widget.NestedScrollView>-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/view_5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#5011dd36">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="t\nt\nt\nt\nt\nt\nt"
-                    android:textSize="85sp"/>
-            </android.support.v4.widget.NestedScrollView>
+                android:background="#5011dd36"
+                android:overScrollMode="always"
+                android:scrollbars="vertical"
+                tools:listitem="@layout/item_dummy"/>
         </ek.layouttest.view.UberScrollLayout2>
     </ek.layouttest.view.FixedNestedScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>
