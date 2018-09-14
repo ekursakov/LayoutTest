@@ -112,13 +112,15 @@ public class UberScrollLayout2 extends ViewGroup {
         int previousHeight = 0;
         for (int i = 0; i < getChildCount(); i++) {
             final View child = getChildAt(i);
-            int top = child.getTop() - previousHeight;
-            if (top < scrollY) {
-                child.setTranslationY(scrollY - top);
+            int collapsedHeight = getChildCollapsedHeight(child);
+            int topWhenCollapsed = child.getBottom() - previousHeight - collapsedHeight;
+
+            if (collapsedHeight > 0 && scrollY > topWhenCollapsed) {
+                child.setTranslationY(scrollY - topWhenCollapsed);
             } else {
                 child.setTranslationY(0);
             }
-            previousHeight += getChildCollapsedHeight(child);
+            previousHeight += collapsedHeight;
         }
         v.invalidate();
     }

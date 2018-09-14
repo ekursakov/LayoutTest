@@ -40,7 +40,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="#501130dd"
-                app:layout_2collapsedHeight="56dp"
+                app:layout_2collapsible="false"/>
+            <View
+                android:id="@+id/view_4"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#50dd11da"
                 app:layout_2collapsible="true"/>
 
             <!--<View-->
