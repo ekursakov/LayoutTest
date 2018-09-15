@@ -1,6 +1,8 @@
 package ek.layouttest
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.transition.TransitionManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,7 +16,26 @@ class Activity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_2)
-view_5.layoutManager = LinearLayoutManager(this)
+
+        swipe_refresh.setOnRefreshListener {
+            swipe_refresh.postDelayed({
+                recreate()
+            }, 500)
+        }
+
+        val listener = View.OnClickListener { v ->
+            TransitionManager.beginDelayedTransition(uber_layout)
+            v.layoutParams.height += 50
+            v.requestLayout()
+        }
+        uber_layout.layoutTransition
+
+        view_1.setOnClickListener(listener)
+        view_2.setOnClickListener(listener)
+        view_3.setOnClickListener(listener)
+        view_4.setOnClickListener(listener)
+
+        view_5.layoutManager = LinearLayoutManager(this)
         view_5.adapter = Adapter(LayoutInflater.from(this))
     }
 

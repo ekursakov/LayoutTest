@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import ek.layouttest.R;
 
@@ -25,9 +26,9 @@ public class UberScrollLayout2 extends ViewGroup {
 
     public UberScrollLayout2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        setChildrenDrawingOrderEnabled(true);
     }
 
-    @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (getParent() instanceof NestedScrollView) {
@@ -58,6 +59,7 @@ public class UberScrollLayout2 extends ViewGroup {
                 if (child.getVisibility() == GONE) {
                     continue;
                 }
+
                 if (child.getLayoutParams().height == LayoutParams.MATCH_PARENT) {
                     measureChild(child, widthMeasureSpec, MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.EXACTLY));
                 } else {
@@ -82,6 +84,11 @@ public class UberScrollLayout2 extends ViewGroup {
             child.layout(0, childTop, width, childTop + child.getMeasuredHeight());
             childTop += child.getMeasuredHeight();
         }
+    }
+
+    @Override
+    protected int getChildDrawingOrder(int childCount, int i) {
+        return childCount - i - 1;
     }
 
     //region LayoutParams

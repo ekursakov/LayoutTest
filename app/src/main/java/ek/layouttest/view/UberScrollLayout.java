@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Px;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -100,6 +101,7 @@ public class UberScrollLayout extends ViewGroup {
     }
 
     public static class LayoutParams extends ViewGroup.LayoutParams {
+
         public boolean collapsible;
         @Px
         public int collapsedHeight;

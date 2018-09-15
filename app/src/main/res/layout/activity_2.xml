@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_refresh"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:enabled="false"
+    android:enabled="true"
     tools:context=".MainActivity">
 
     <ek.layouttest.view.FixedNestedScrollView
@@ -16,18 +17,21 @@
         android:scrollbars="vertical">
 
         <ek.layouttest.view.UberScrollLayout2
+            android:id="@+id/uber_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <View
+            <ek.layouttest.TestView
                 android:id="@+id/view_1"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
                 android:background="#5011d3dd"
                 android:visibility="visible"
                 app:layout_2collapsible="true"/>
 
-            <View
+            <ek.layouttest.TestView
                 android:id="@+id/view_2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -35,43 +39,24 @@
                 app:layout_2collapsedHeight="56dp"
                 app:layout_2collapsible="true"/>
 
-            <View
+            <ek.layouttest.TestView
                 android:id="@+id/view_3"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="#501130dd"
                 app:layout_2collapsible="false"/>
-            <View
+            <ek.layouttest.TestView
                 android:id="@+id/view_4"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:background="#50dd11da"
+                android:background="#dd11da"
                 app:layout_2collapsible="true"/>
 
-            <!--<View-->
-            <!--android:id="@+id/view_4"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="#5011dd36" />-->
-
-            <!--<android.support.v4.widget.NestedScrollView-->
-                <!--android:id="@+id/view_4"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:background="#5011dd36">-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="t\nt\nt\nt\nt\nt\nt"-->
-                    <!--android:textSize="85sp"/>-->
-            <!--</android.support.v4.widget.NestedScrollView>-->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/view_5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#5011dd36"
-                android:overScrollMode="always"
                 android:scrollbars="vertical"
                 tools:listitem="@layout/item_dummy"/>
         </ek.layouttest.view.UberScrollLayout2>

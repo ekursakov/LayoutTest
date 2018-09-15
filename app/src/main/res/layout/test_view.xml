@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_height="56dp"
+    tools:layout_width="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layoutDebug"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            tools:text="1"/>
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="h:"/>
+
+        <EditText
+            android:id="@+id/etHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:inputType="numberDecimal"
+            tools:text="222"/>
+
+        <ToggleButton
+            android:id="@+id/toggleCollapsible"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:textOff="F"
+            android:textOn="C"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ch:"/>
+
+        <EditText
+            android:id="@+id/etCollapsedHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:inputType="numberDecimal"
+            tools:text="222"/>
+
+
+        <ToggleButton
+            android:id="@+id/toggleSnap"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:textOff="Off"
+            android:textOn="Snap"
+            tools:checked="true"/>
+    </LinearLayout>
+
+</merge>
