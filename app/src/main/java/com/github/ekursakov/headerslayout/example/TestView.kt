@@ -1,4 +1,4 @@
-package ek.layouttest
+package com.github.ekursakov.headerslayout.example
 
 import android.content.Context
 import android.text.Editable
@@ -6,7 +6,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import ek.layouttest.view.UberScrollLayout2
+import com.github.ekursakov.headerslayout.HeadersLayout
 import kotlinx.android.synthetic.main.test_view.view.*
 
 /**
@@ -24,7 +24,7 @@ class TestView @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        val layoutParams = (layoutParams as? UberScrollLayout2.LayoutParams) ?: return
+        val layoutParams = (layoutParams as? HeadersLayout.LayoutParams) ?: return
 
         toggleCollapsible.isChecked = layoutParams.collapsible
         toggleCollapsible.setOnCheckedChangeListener { _, isChecked ->
@@ -55,11 +55,4 @@ class TestView @JvmOverloads constructor(
             tvHeight.text = layoutParams.height.toString()
         }
     }
-
-    var showDebug: Boolean = true
-        set(value) {
-            field = value
-            layoutDebug.visibility = if (value) View.VISIBLE else View.GONE
-        }
-
 }

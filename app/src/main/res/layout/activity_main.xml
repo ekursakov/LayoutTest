@@ -1,35 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
-    <ek.layouttest.view.UberScrollLayout
+    <com.github.ekursakov.headerslayout.DelegatedNestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
-        <View
-            android:id="@+id/view_1"
+        <com.github.ekursakov.headerslayout.HeadersLayout
+            android:id="@+id/uber_layout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#5011d3dd"
-            app:layout_collapsible="true"
-            app:layout_collapsedHeight="20dp"
-            android:visibility="visible" />
+            android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/view_2"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#50dd4411" />
+            <com.github.ekursakov.headerslayout.example.TestView
+                android:id="@+id/view_1"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#11d3dd"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="visible"
+                app:layout_collapsible="true" />
 
-        <View
-            android:id="@+id/view_3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#5011dd36" />
-    </ek.layouttest.view.UberScrollLayout>
+            <com.github.ekursakov.headerslayout.example.TestView
+                android:id="@+id/view_2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#dd4411"
+                app:layout_collapsedHeight="56dp"
+                app:layout_collapsible="true" />
 
-</FrameLayout>
+            <com.github.ekursakov.headerslayout.example.TestView
+                android:id="@+id/view_3"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#1130dd"
+                app:layout_collapsible="false" />
+
+            <com.github.ekursakov.headerslayout.example.TestView
+                android:id="@+id/view_4"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#dd11da"
+                app:layout_collapsible="true" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#11dd36"
+                android:scrollbars="vertical"
+                tools:listitem="@layout/item_dummy" />
+        </com.github.ekursakov.headerslayout.HeadersLayout>
+    </com.github.ekursakov.headerslayout.DelegatedNestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/scenes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
+</LinearLayout>

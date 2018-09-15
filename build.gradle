@@ -1,4 +1,4 @@
-import static ek.layouttest.Dependencies.*
+import static com.github.ekursakov.headerslayout.Dependencies.*
 
 buildscript {
     repositories {
@@ -18,7 +18,7 @@ allprojects {
     }
 }
 
-allprojects { project ->
+subprojects { project ->
     afterEvaluate {
         if (project.hasProperty("android")) {
             android {
@@ -26,6 +26,10 @@ allprojects { project ->
                 defaultConfig {
                     minSdkVersion Versions.minSdk
                     targetSdkVersion Versions.targetSdk
+                }
+                compileOptions {
+                    targetCompatibility 1.8
+                    sourceCompatibility 1.8
                 }
             }
         }

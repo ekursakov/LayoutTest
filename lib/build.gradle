@@ -1,0 +1,17 @@
+import static com.github.ekursakov.headerslayout.Dependencies.*
+
+apply plugin: 'com.android.library'
+
+android {
+    defaultConfig {
+        versionCode 1
+        versionName '0.0.1'
+    }
+}
+
+dependencies {
+    implementation Support.coreUi
+    implementation Support.recyclerView
+
+    testImplementation Test.junit
+}

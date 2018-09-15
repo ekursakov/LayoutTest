@@ -1,37 +1,26 @@
-import static ek.layouttest.Dependencies.*
+import static com.github.ekursakov.headerslayout.Dependencies.*
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-android.defaultConfig {
-    applicationId "ek.layouttest"
-    versionCode 1
-    versionName "1.0"
+android {
+    defaultConfig {
+        applicationId 'ek.layouttest'
+        versionCode 1
+        versionName '1.0'
+    }
 }
 
 dependencies {
-    implementation(
-            kotlinRuntime,
+    implementation project(':lib')
 
-            Support.appCompat,
-            Support.design,
-            Support.transition,
-            Support.constraintLayout,
-            Support.recyclerView,
+    implementation kotlinStdlib
 
-            rxJava2,
+    implementation Support.appCompat
+    implementation Support.design
+    implementation Support.transition
+    implementation Support.recyclerView
 
-            Ui.observableScrollView,
-    )
-
-    testImplementation(
-            Test.junit,
-    )
-}
-android {
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
+    testImplementation Test.junit
 }

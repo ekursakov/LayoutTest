@@ -1,58 +1,55 @@
-package ek.layouttest.view;
+package com.github.ekursakov.headerslayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Px;
 import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewDebug;
 import android.view.ViewGroup;
 
+import com.github.ekursakov.headerslayout.delegates.FixRecyclerNestedScrollDelegate;
+import com.github.ekursakov.headerslayout.delegates.SnapDelegate;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import ek.layouttest.R;
-
-public class UberScrollLayout2 extends ViewGroup {
-
-    private static final String TAG = "UberScrollLayout2";
+public class HeadersLayout extends ViewGroup {
 
     @ViewDebug.ExportedProperty(prefix = "scrolling")
     private final List<Integer> snapPoints = new ArrayList<>();
 
-    public UberScrollLayout2(Context context) {
+    public HeadersLayout(Context context) {
         this(context, null);
     }
 
-    public UberScrollLayout2(Context context, AttributeSet attrs) {
+    public HeadersLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public UberScrollLayout2(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HeadersLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setChildrenDrawingOrderEnabled(true);
     }
 
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (getParent() instanceof NestedScrollView) {
-            ((NestedScrollView) getParent()).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                    onScroll(v, scrollY);
-                }
-            });
-        } else {
-            throw new IllegalStateException("UberScrollLayout2 parent must be NestedScrollView");
-        }
-    }
+        if (getParent() instanceof DelegatedNestedScrollView) {
+            DelegatedNestedScrollView parent = (DelegatedNestedScrollView) getParent();
 
-    @Override
-    public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
-        return super.onNestedPreFling(target, velocityX, velocityY);
+            parent.setOverScrollMode(OVER_SCROLL_NEVER);
+
+            parent.addDelegate(new SnapDelegate(snapPoints));
+            parent.addDelegate(new FixRecyclerNestedScrollDelegate());
+
+            parent.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
+                    (v, scrollX, scrollY, oldScrollX, oldScrollY) -> onScroll(v, scrollY)
+            );
+        } else {
+            throw new IllegalStateException(getClass().getSimpleName() + " parent must be "
+                                            + DelegatedNestedScrollView.class.getSimpleName());
+        }
     }
 
     @Override
@@ -80,9 +77,11 @@ public class UberScrollLayout2 extends ViewGroup {
                 final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
                 if (lp.height == LayoutParams.MATCH_PARENT) {
-                    measureChild(child, widthMeasureSpec, MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.EXACTLY));
+                    measureChild(child, widthMeasureSpec,
+                            MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.EXACTLY));
                 } else {
-                    measureChild(child, widthMeasureSpec, MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.AT_MOST));
+                    measureChild(child, widthMeasureSpec,
+                            MeasureSpec.makeMeasureSpec(availableHeight, MeasureSpec.AT_MOST));
                 }
 
                 int childCollapsedHeight = getChildCollapsedHeight(child);
@@ -142,8 +141,6 @@ public class UberScrollLayout2 extends ViewGroup {
     //endregion
 
     private void onScroll(NestedScrollView v, int scrollY) {
-        Log.d(TAG, "onScroll(): [" + v.getScrollY() + "] scrollY = [" + scrollY + "]");
-
         int previousHeight = 0;
         for (int i = 0; i < getChildCount(); i++) {
             final View child = getChildAt(i);
@@ -173,24 +170,6 @@ public class UberScrollLayout2 extends ViewGroup {
         }
     }
 
-    public int getClosestSnapPoint(int scrollY, float lastVelocity) {
-        if (snapPoints.size() == 1) {
-            return scrollY;
-        }
-
-        int result = Collections.binarySearch(snapPoints, scrollY);
-        if (result >= 0) {
-            return scrollY;
-        } else {
-            int insertionPoint = -result - 1;
-            if (lastVelocity > 0) {
-                return snapPoints.get(Math.min(snapPoints.size() - 1, insertionPoint));
-            } else {
-                return snapPoints.get(Math.max(0, insertionPoint - 1));
-            }
-        }
-    }
-
     public static class LayoutParams extends ViewGroup.LayoutParams {
 
         @ViewDebug.ExportedProperty(category = "layout")
@@ -210,11 +189,12 @@ public class UberScrollLayout2 extends ViewGroup {
 
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
-            TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.UberScrollLayout2_Layout);
-            collapsible = a.getBoolean(R.styleable.UberScrollLayout2_Layout_layout_2collapsible, false);
-            collapsedHeight = a.getDimensionPixelSize(R.styleable.UberScrollLayout2_Layout_layout_2collapsedHeight, 0);
-            snap = a.getBoolean(R.styleable.UberScrollLayout2_Layout_layout_2snap, false);
+            TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.HeadersLayout_Layout);
+            collapsible = a.getBoolean(R.styleable.HeadersLayout_Layout_layout_collapsible, false);
+            collapsedHeight = a.getDimensionPixelSize(R.styleable.HeadersLayout_Layout_layout_collapsedHeight, 0);
+            snap = a.getBoolean(R.styleable.HeadersLayout_Layout_layout_snap, false);
             a.recycle();
         }
     }
+
 }

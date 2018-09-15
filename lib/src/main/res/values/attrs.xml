@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HeadersLayout_Layout">
+        <attr name="layout_collapsible" format="boolean" />
+        <attr name="layout_collapsedHeight" format="dimension" />
+        <attr name="layout_snap" format="boolean" />
+    </declare-styleable>
+</resources>

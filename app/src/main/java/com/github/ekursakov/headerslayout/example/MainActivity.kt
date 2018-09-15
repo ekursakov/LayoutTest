@@ -1,4 +1,4 @@
-package ek.layouttest
+package com.github.ekursakov.headerslayout.example
 
 import android.os.Bundle
 import android.support.transition.TransitionManager
@@ -9,20 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import ek.layouttest.view.UberScrollLayout2
-import kotlinx.android.synthetic.main.activity_2.*
+import com.github.ekursakov.headerslayout.HeadersLayout
+import kotlinx.android.synthetic.main.activity_main.*
 
-class Activity2 : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_2)
+        setContentView(R.layout.activity_main)
 
-        /*swipe_refresh.setOnRefreshListener {
-            swipe_refresh.postDelayed({
-                recreate()
-            }, 500)
-        }*/
         applyScene1()
 
         addScene("1") { applyScene1() }
@@ -121,10 +116,10 @@ class Activity2 : AppCompatActivity() {
 
     class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView)
 
-    val View.uberLayoutParams: UberScrollLayout2.LayoutParams
-        get() = layoutParams as UberScrollLayout2.LayoutParams
+    private val View.uberLayoutParams: HeadersLayout.LayoutParams
+        get() = layoutParams as HeadersLayout.LayoutParams
 
-    fun Int.dp(): Int {
+    private fun Int.dp(): Int {
         val density = resources.displayMetrics.density
         return Math.round(this.toFloat() * density)
     }
