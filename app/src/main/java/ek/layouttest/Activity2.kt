@@ -1,6 +1,5 @@
 package ek.layouttest
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.transition.TransitionManager
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import ek.layouttest.view.UberScrollLayout2
 import kotlinx.android.synthetic.main.activity_2.*
 
 class Activity2 : AppCompatActivity() {
@@ -17,26 +18,93 @@ class Activity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_2)
 
-        swipe_refresh.setOnRefreshListener {
+        /*swipe_refresh.setOnRefreshListener {
             swipe_refresh.postDelayed({
                 recreate()
             }, 500)
+        }*/
+        applyScene1()
+
+        addScene("1") { applyScene1() }
+        addScene("2") { applyScene2() }
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = Adapter(LayoutInflater.from(this))
+    }
+
+    private fun addScene(i: String, listener: (View) -> Unit) {
+        scenes.addView(Button(this).apply {
+            text = i
+            setOnClickListener(listener)
+        })
+    }
+
+    private fun applyScene1() {
+        TransitionManager.beginDelayedTransition(uber_layout)
+
+        with(view_1.uberLayoutParams) {
+            height = 56.dp()
+            collapsible = true
+            collapsedHeight = 0.dp()
         }
+        view_1.visibility = View.VISIBLE
 
-        val listener = View.OnClickListener { v ->
-            TransitionManager.beginDelayedTransition(uber_layout)
-            v.layoutParams.height += 50
-            v.requestLayout()
+        with(view_2.uberLayoutParams) {
+            height = 120.dp()
+            collapsible = true
+            collapsedHeight = 0.dp()
         }
-        uber_layout.layoutTransition
+        view_2.visibility = View.VISIBLE
 
-        view_1.setOnClickListener(listener)
-        view_2.setOnClickListener(listener)
-        view_3.setOnClickListener(listener)
-        view_4.setOnClickListener(listener)
+        with(view_3.uberLayoutParams) {
+            height = 56.dp()
+            collapsible = true
+            collapsedHeight = 0.dp()
+        }
+        view_3.visibility = View.VISIBLE
 
-        view_5.layoutManager = LinearLayoutManager(this)
-        view_5.adapter = Adapter(LayoutInflater.from(this))
+        with(view_4.uberLayoutParams) {
+            height = 56.dp()
+            collapsible = true
+            collapsedHeight = 0.dp()
+        }
+        view_4.visibility = View.VISIBLE
+
+        uber_layout.requestLayout()
+    }
+
+    private fun applyScene2() {
+        TransitionManager.beginDelayedTransition(uber_layout)
+
+        with(view_1.uberLayoutParams) {
+            height = 56.dp()
+            collapsible = false
+            collapsedHeight = 0.dp()
+        }
+        view_1.visibility = View.VISIBLE
+
+        with(view_2.uberLayoutParams) {
+            height = 121.dp()
+            collapsible = true
+            collapsedHeight = 0.dp()
+        }
+        view_2.visibility = View.VISIBLE
+
+        with(view_3.uberLayoutParams) {
+            height = 56.dp()
+            collapsible = true
+            collapsedHeight = 0.dp()
+        }
+        view_3.visibility = View.VISIBLE
+
+        with(view_4.uberLayoutParams) {
+            height = 56.dp()
+            collapsible = false
+            collapsedHeight = 0.dp()
+        }
+        view_4.visibility = View.GONE
+
+        uber_layout.requestLayout()
     }
 
     class Adapter(private val layoutInflater: LayoutInflater) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -52,4 +120,12 @@ class Activity2 : AppCompatActivity() {
     }
 
     class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
+    val View.uberLayoutParams: UberScrollLayout2.LayoutParams
+        get() = layoutParams as UberScrollLayout2.LayoutParams
+
+    fun Int.dp(): Int {
+        val density = resources.displayMetrics.density
+        return Math.round(this.toFloat() * density)
+    }
 }

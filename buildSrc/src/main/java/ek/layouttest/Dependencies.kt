@@ -38,7 +38,7 @@ object Dependencies {
         val minSdk = 16
         val targetSdk = 27
 
-        val androidGradlePlugin = "3.1.3"
+        val androidGradlePlugin = "3.1.4"
 
         val kotlin = "1.2.41"
 

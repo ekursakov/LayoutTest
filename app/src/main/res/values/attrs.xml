@@ -7,5 +7,6 @@
     <declare-styleable name="UberScrollLayout2_Layout">
         <attr name="layout_2collapsible" format="boolean" />
         <attr name="layout_2collapsedHeight" format="dimension" />
+        <attr name="layout_2snap" format="boolean" />
     </declare-styleable>
 </resources>

@@ -24,10 +24,16 @@ class TestView @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        val layoutParams = layoutParams()
+        val layoutParams = (layoutParams as? UberScrollLayout2.LayoutParams) ?: return
+
         toggleCollapsible.isChecked = layoutParams.collapsible
         toggleCollapsible.setOnCheckedChangeListener { _, isChecked ->
             layoutParams.collapsible = isChecked
+            requestLayout()
+        }
+        toggleSnap.isChecked = layoutParams.snap
+        toggleSnap.setOnCheckedChangeListener { _, isChecked ->
+            layoutParams.snap = isChecked
             requestLayout()
         }
 
@@ -44,25 +50,11 @@ class TestView @JvmOverloads constructor(
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             }
         })
-            etHeight.setText(layoutParams.height.toString())
+
         addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-            etHeight.setText(layoutParams.height.toString())
+            tvHeight.text = layoutParams.height.toString()
         }
-        etHeight.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {
-                layoutParams.height = s.toString().toIntOrNull() ?: 0
-                requestLayout()
-            }
-
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            }
-        })
     }
-
-    fun layoutParams() = (layoutParams as UberScrollLayout2.LayoutParams)
 
     var showDebug: Boolean = true
         set(value) {
