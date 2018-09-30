@@ -1,13 +1,14 @@
 package com.github.ekursakov.headerslayout.delegates;
 
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.github.ekursakov.headerslayout.DelegatedNestedScrollView;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class FixRecyclerNestedScrollDelegate extends DelegatedNestedScrollView.DefaultDelegate {
     @Override

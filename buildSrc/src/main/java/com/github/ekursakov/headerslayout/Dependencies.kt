@@ -5,13 +5,20 @@ package com.github.ekursakov.headerslayout
 object Dependencies {
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
-    object Support {
-        const val coreUi = "com.android.support:support-core-ui:${Versions.supportLibs}"
-        const val appCompat = "com.android.support:appcompat-v7:${Versions.supportLibs}"
-        const val transition = "com.android.support:transition:${Versions.supportLibs}"
-        const val design = "com.android.support:design:${Versions.supportLibs}"
-        const val fragment = "com.android.support:support-fragment:${Versions.supportLibs}"
-        const val recyclerView = "com.android.support:recyclerview-v7:${Versions.supportLibs}"
+    object AndroidX {
+        const val core = "androidx.core:core:1.0.0"
+        const val appCompat = "androidx.appcompat:appcompat:1.0.0"
+        const val fragment = "androidx.fragment:fragment:1.0.0"
+        const val transition = "androidx.transition:transition:1.0.0"
+        const val recyclerView = "androidx.recyclerview:recyclerview:1.0.0"
+
+        const val coreKtx = "androidx.core:core-ktx:1.0.0"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.0.0"
+        const val paletteKtx = "androidx.palette:palette-ktx:1.0.0"
+        const val sqliteKtx = "androidx.sqlite:sqlite-ktx:1.0.0"
+        const val collectionKtx = "androidx.collection:collection-ktx:1.0.0"
+
+        const val material = "com.google.android.material:material:1.0.0"
     }
 
     object Test {
@@ -31,11 +38,5 @@ object Dependencies {
         const val androidGradlePlugin = "3.2.0"
 
         const val kotlin = "1.2.71"
-
-        const val supportLibs = "28.0.0"
-        const val constraintLayout = "1.1.0"
-
-        const val rxJava2 = "2.1.13"
-        const val rxAndroid2 = "2.0.2"
     }
 }

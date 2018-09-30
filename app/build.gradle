@@ -17,10 +17,11 @@ dependencies {
 
     implementation kotlinStdlib
 
-    implementation "com.android.support:appcompat-v7:${Versions.supportLibs}"
-    implementation "com.android.support:design:${Versions.supportLibs}"
-    implementation "com.android.support:transition:${Versions.supportLibs}"
-    implementation "com.android.support:recyclerview-v7:${Versions.supportLibs}"
+    implementation AndroidX.appCompat
+    implementation AndroidX.fragment
+    implementation AndroidX.material
+    implementation AndroidX.transition
+    implementation AndroidX.recyclerView
 
     testImplementation Test.junit
 }

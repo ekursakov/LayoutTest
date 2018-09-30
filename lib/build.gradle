@@ -10,8 +10,8 @@ android {
 }
 
 dependencies {
-    implementation Support.coreUi
-    implementation Support.recyclerView
+    implementation AndroidX.core
+    implementation AndroidX.recyclerView
 
     testImplementation Test.junit
 }

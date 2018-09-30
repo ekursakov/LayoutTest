@@ -2,8 +2,6 @@ package com.github.ekursakov.headerslayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.Px;
-import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewDebug;
@@ -14,6 +12,9 @@ import com.github.ekursakov.headerslayout.delegates.SnapDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Px;
+import androidx.core.widget.NestedScrollView;
 
 public class HeadersLayout extends ViewGroup {
 

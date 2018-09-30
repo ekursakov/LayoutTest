@@ -3,9 +3,6 @@ package com.github.ekursakov.headerslayout.delegates;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.NestedScrollView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -14,6 +11,10 @@ import com.github.ekursakov.headerslayout.DelegatedNestedScrollView;
 
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
 
 public class SnapDelegate extends DelegatedNestedScrollView.DefaultDelegate {
 
