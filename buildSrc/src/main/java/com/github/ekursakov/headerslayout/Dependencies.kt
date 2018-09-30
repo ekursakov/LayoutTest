@@ -24,15 +24,15 @@ object Dependencies {
     }
 
     object Versions {
-        const val compileSdk = 27
+        const val compileSdk = 28
         const val minSdk = 16
-        const val targetSdk = 27
+        const val targetSdk = 28
 
-        const val androidGradlePlugin = "3.1.4"
+        const val androidGradlePlugin = "3.2.0"
 
-        const val kotlin = "1.2.41"
+        const val kotlin = "1.2.71"
 
-        const val supportLibs = "27.1.1"
+        const val supportLibs = "28.0.0"
         const val constraintLayout = "1.1.0"
 
         const val rxJava2 = "2.1.13"

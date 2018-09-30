@@ -11,7 +11,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DelegatedNestedScrollView extends NestedScrollView2 {
+public class DelegatedNestedScrollView extends NestedScrollView {
 
     private final List<Delegate> delegates = new ArrayList<>();
 

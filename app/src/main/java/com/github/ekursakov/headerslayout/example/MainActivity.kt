@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private val View.uberLayoutParams: HeadersLayout.LayoutParams
         get() = layoutParams as HeadersLayout.LayoutParams

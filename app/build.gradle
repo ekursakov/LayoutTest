@@ -17,10 +17,10 @@ dependencies {
 
     implementation kotlinStdlib
 
-    implementation Support.appCompat
-    implementation Support.design
-    implementation Support.transition
-    implementation Support.recyclerView
+    implementation "com.android.support:appcompat-v7:${Versions.supportLibs}"
+    implementation "com.android.support:design:${Versions.supportLibs}"
+    implementation "com.android.support:transition:${Versions.supportLibs}"
+    implementation "com.android.support:recyclerview-v7:${Versions.supportLibs}"
 
     testImplementation Test.junit
 }
