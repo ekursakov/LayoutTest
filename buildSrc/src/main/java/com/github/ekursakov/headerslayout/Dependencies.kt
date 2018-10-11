@@ -11,12 +11,7 @@ object Dependencies {
         const val fragment = "androidx.fragment:fragment:1.0.0"
         const val transition = "androidx.transition:transition:1.0.0"
         const val recyclerView = "androidx.recyclerview:recyclerview:1.0.0"
-
-        const val coreKtx = "androidx.core:core-ktx:1.0.0"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.0.0"
-        const val paletteKtx = "androidx.palette:palette-ktx:1.0.0"
-        const val sqliteKtx = "androidx.sqlite:sqlite-ktx:1.0.0"
-        const val collectionKtx = "androidx.collection:collection-ktx:1.0.0"
+        const val dynamicAnimation = "androidx.dynamicanimation:dynamicanimation:1.0.0"
 
         const val material = "com.google.android.material:material:1.0.0"
     }

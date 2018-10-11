@@ -1,11 +1,7 @@
 package com.github.ekursakov.headerslayout.delegates;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 
 import com.github.ekursakov.headerslayout.DelegatedNestedScrollView;
 
@@ -15,6 +11,9 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
+import androidx.dynamicanimation.animation.FloatPropertyCompat;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
 
 public class SnapDelegate extends DelegatedNestedScrollView.DefaultDelegate {
 
@@ -24,7 +23,7 @@ public class SnapDelegate extends DelegatedNestedScrollView.DefaultDelegate {
     private boolean scrollStopped = true;
     private float lastVelocity;
     private boolean pressed;
-    private ValueAnimator expandingAnimator;
+    private SpringAnimation springAnimation;
 
     public SnapDelegate(List<Integer> snapPoints) {
         this.snapPoints = snapPoints;
@@ -83,27 +82,37 @@ public class SnapDelegate extends DelegatedNestedScrollView.DefaultDelegate {
 
     private boolean animateToClosestSnapPoint(NestedScrollView view) {
         int scrollY = view.getScrollY();
-        int snapPoint = getClosestSnapPoint(scrollY);
+        int snapPoint = getClosestSnapPoint((int) (scrollY + lastVelocity / 2));
 
         // TODO: don't interrupt fling if finalY is greater than last snap point
         if (snapPoint != scrollY) {
-            if (expandingAnimator != null) {
-                expandingAnimator.cancel();
+            if (springAnimation != null) {
+                springAnimation.cancel();
             }
-            expandingAnimator = ValueAnimator.ofInt(scrollY, snapPoint);
-            expandingAnimator.addUpdateListener(valueAnimator ->
-                    view.scrollTo(0, (int) valueAnimator.getAnimatedValue())
-            );
-            expandingAnimator.addListener(new AnimatorListenerAdapter() {
+
+            springAnimation = new SpringAnimation(view, new FloatPropertyCompat<NestedScrollView>("scrollY") {
                 @Override
-                public void onAnimationEnd(Animator animation) {
-                    expandingAnimator = null;
+                public float getValue(NestedScrollView object) {
+                    return object.getScrollY();
+                }
+
+                @Override
+                public void setValue(NestedScrollView object, float value) {
+                    object.setScrollY((int) value);
                 }
             });
-            expandingAnimator.setInterpolator(new DecelerateInterpolator(2));
-            // TODO: use dp/sec instead of px
-            expandingAnimator.setDuration(200 * Math.abs(scrollY - snapPoint) / 100);
-            expandingAnimator.start();
+            SpringForce force = new SpringForce();
+            force.setDampingRatio(SpringForce.DAMPING_RATIO_NO_BOUNCY);
+            force.setStiffness(SpringForce.STIFFNESS_LOW);
+            springAnimation.setSpring(force);
+            springAnimation.setStartVelocity(lastVelocity);
+            if (snapPoint > scrollY) {
+                springAnimation.setMaxValue(snapPoint);
+            } else {
+                springAnimation.setMinValue(snapPoint);
+            }
+
+            springAnimation.animateToFinalPosition(snapPoint);
             return true;
         }
         return false;

@@ -12,6 +12,7 @@ android {
 dependencies {
     implementation AndroidX.core
     implementation AndroidX.recyclerView
+    implementation AndroidX.dynamicAnimation
 
     testImplementation Test.junit
 }
