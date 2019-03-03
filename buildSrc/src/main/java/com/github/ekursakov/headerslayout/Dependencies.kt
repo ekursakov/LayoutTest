@@ -6,8 +6,8 @@ object Dependencies {
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
     object AndroidX {
-        const val core = "androidx.core:core:1.0.0"
-        const val appCompat = "androidx.appcompat:appcompat:1.0.0"
+        const val core = "androidx.core:core:1.0.1"
+        const val appCompat = "androidx.appcompat:appcompat:1.0.2"
         const val fragment = "androidx.fragment:fragment:1.0.0"
         const val transition = "androidx.transition:transition:1.0.0"
         const val recyclerView = "androidx.recyclerview:recyclerview:1.0.0"
@@ -30,8 +30,8 @@ object Dependencies {
         const val minSdk = 16
         const val targetSdk = 28
 
-        const val androidGradlePlugin = "3.2.0"
+        const val androidGradlePlugin = "3.2.1"
 
-        const val kotlin = "1.2.71"
+        const val kotlin = "1.3.21"
     }
 }

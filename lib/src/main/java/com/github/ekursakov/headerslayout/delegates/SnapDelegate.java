@@ -48,7 +48,6 @@ public class SnapDelegate extends DelegatedNestedScrollView.DefaultDelegate {
         return animateToClosestSnapPoint(view);
     }
 
-
     @Override
     public boolean onStopNestedScroll(@NonNull NestedScrollView view, @NonNull View target, int type) {
         if (scrollStopped) {
