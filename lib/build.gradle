@@ -10,9 +10,11 @@ android {
 }
 
 dependencies {
-    implementation AndroidX.core
-    implementation AndroidX.recyclerView
-    implementation AndroidX.dynamicAnimation
+    implementation kotlinStdlib
+
+    api AndroidX.core
+    api AndroidX.recyclerView
+    api AndroidX.dynamicAnimation
 
     testImplementation Test.junit
 }

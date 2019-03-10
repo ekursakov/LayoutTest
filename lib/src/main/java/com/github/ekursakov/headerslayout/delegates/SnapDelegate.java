@@ -15,7 +15,7 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 
-public class SnapDelegate extends DelegatedNestedScrollView.DefaultDelegate {
+public class SnapDelegate implements DelegatedNestedScrollView.Delegate {
 
     private final List<Integer> snapPoints;
 

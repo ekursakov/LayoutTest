@@ -63,14 +63,13 @@ public class DelegatedNestedScrollView extends NestedScrollView {
     }
 
     @Override
-    public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed,
-                               int dxUnconsumed, int dyUnconsumed, int type) {
+    public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
         for (Delegate delegate : delegates) {
-            if (delegate.onNestedScroll(this, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type)) {
+            if (delegate.onNestedScroll(this, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed)) {
                 return;
             }
         }
-        super.onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
+        super.onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
     }
 
     @Override
@@ -114,73 +113,41 @@ public class DelegatedNestedScrollView extends NestedScrollView {
     }
 
     public interface Delegate {
-        boolean onStartNestedScroll(@NonNull NestedScrollView view, @NonNull View child, @NonNull View target,
-                                    int axes, int type);
-
-        boolean onNestedScrollAccepted(@NonNull NestedScrollView view, @NonNull View child, @NonNull View target,
-                                       int axes, int type);
-
-        boolean onNestedPreScroll(@NonNull NestedScrollView view, @NonNull View target, int dx, int dy,
-                                  @NonNull int[] consumed, int type);
-
-        boolean onNestedScroll(@NonNull NestedScrollView view, @NonNull View target,
-                               int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type);
-
-        boolean onNestedPreFling(@NonNull NestedScrollView view, @NonNull View target,
-                                 float velocityX, float velocityY);
-
-        boolean onNestedFling(@NonNull NestedScrollView view, @NonNull View target,
-                              float velocityX, float velocityY, boolean consumed);
-
-        boolean onStopNestedScroll(@NonNull NestedScrollView view, @NonNull View target, int type);
-
-        boolean onInterceptTouchEvent(@NonNull NestedScrollView view, @NonNull MotionEvent ev);
-    }
-
-    public static class DefaultDelegate implements Delegate {
-        @Override
-        public boolean onStartNestedScroll(@NonNull NestedScrollView view, @NonNull View child, @NonNull View target,
-                                           int axes, int type) {
+        default boolean onStartNestedScroll(@NonNull NestedScrollView view, @NonNull View child, @NonNull View target,
+                                            int axes, int type) {
             return false;
         }
 
-        @Override
-        public boolean onNestedScrollAccepted(@NonNull NestedScrollView view, @NonNull View child, @NonNull View target,
-                                              int axes, int type) {
+        default boolean onNestedScrollAccepted(@NonNull NestedScrollView view, @NonNull View child, @NonNull View target,
+                                               int axes, int type) {
             return false;
         }
 
-        @Override
-        public boolean onNestedPreScroll(@NonNull NestedScrollView view, @NonNull View target, int dx, int dy,
-                                         @NonNull int[] consumed, int type) {
+        default boolean onNestedPreScroll(@NonNull NestedScrollView view, @NonNull View target, int dx, int dy,
+                                          @NonNull int[] consumed, int type) {
             return false;
         }
 
-        @Override
-        public boolean onNestedScroll(@NonNull NestedScrollView view, @NonNull View target,
-                                      int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
+        default boolean onNestedScroll(@NonNull NestedScrollView view, @NonNull View target,
+                                       int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type, int[] consumed) {
             return false;
         }
 
-        @Override
-        public boolean onNestedPreFling(@NonNull NestedScrollView view, @NonNull View target,
-                                        float velocityX, float velocityY) {
+        default boolean onNestedPreFling(@NonNull NestedScrollView view, @NonNull View target,
+                                         float velocityX, float velocityY) {
             return false;
         }
 
-        @Override
-        public boolean onNestedFling(@NonNull NestedScrollView view, @NonNull View target,
-                                     float velocityX, float velocityY, boolean consumed) {
+        default boolean onNestedFling(@NonNull NestedScrollView view, @NonNull View target,
+                                      float velocityX, float velocityY, boolean consumed) {
             return false;
         }
 
-        @Override
-        public boolean onStopNestedScroll(@NonNull NestedScrollView view, @NonNull View target, int type) {
+        default boolean onStopNestedScroll(@NonNull NestedScrollView view, @NonNull View target, int type) {
             return false;
         }
 
-        @Override
-        public boolean onInterceptTouchEvent(@NonNull NestedScrollView view, @NonNull MotionEvent ev) {
+        default boolean onInterceptTouchEvent(@NonNull NestedScrollView view, @NonNull MotionEvent ev) {
             return false;
         }
     }

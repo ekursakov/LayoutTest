@@ -7,59 +7,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.github.ekursakov.headerslayout.DelegatedNestedScrollView
+    <com.github.ekursakov.headerslayout.HeadersLayout3
+        android:id="@+id/uber_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        android:scrollbars="vertical">
+        android:layout_weight="1">
 
-        <com.github.ekursakov.headerslayout.HeadersLayout
-            android:id="@+id/uber_layout"
+        <com.github.ekursakov.headerslayout.example.TestView
+            android:id="@+id/view_1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="56dp"
+            android:background="#11d3dd"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="visible"
+            app:layout_collapsible="true" />
 
-            <com.github.ekursakov.headerslayout.example.TestView
-                android:id="@+id/view_1"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="#11d3dd"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:visibility="visible"
-                app:layout_collapsible="true" />
+        <com.github.ekursakov.headerslayout.example.TestView
+            android:id="@+id/view_2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#dd4411"
+            app:layout_collapsedHeight="56dp"
+            app:layout_collapsible="true" />
 
-            <com.github.ekursakov.headerslayout.example.TestView
-                android:id="@+id/view_2"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#dd4411"
-                app:layout_collapsedHeight="56dp"
-                app:layout_collapsible="true" />
+        <com.github.ekursakov.headerslayout.example.TestView
+            android:id="@+id/view_3"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#1130dd"
+            app:layout_collapsible="false" />
 
-            <com.github.ekursakov.headerslayout.example.TestView
-                android:id="@+id/view_3"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="#1130dd"
-                app:layout_collapsible="false" />
+        <com.github.ekursakov.headerslayout.example.TestView
+            android:id="@+id/view_4"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#dd11da"
+            app:layout_collapsible="true" />
 
-            <com.github.ekursakov.headerslayout.example.TestView
-                android:id="@+id/view_4"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="#dd11da"
-                app:layout_collapsible="true" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#11dd36"
-                android:scrollbars="vertical"
-                tools:listitem="@layout/item_dummy" />
-        </com.github.ekursakov.headerslayout.HeadersLayout>
-    </com.github.ekursakov.headerslayout.DelegatedNestedScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#11dd36"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/item_dummy" />
+    </com.github.ekursakov.headerslayout.HeadersLayout3>
 
     <LinearLayout
         android:id="@+id/scenes"

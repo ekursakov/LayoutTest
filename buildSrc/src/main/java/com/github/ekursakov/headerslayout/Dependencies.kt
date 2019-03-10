@@ -6,11 +6,11 @@ object Dependencies {
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
     object AndroidX {
-        const val core = "androidx.core:core:1.0.1"
+        const val core = "androidx.core:core:1.1.0-alpha04"
         const val appCompat = "androidx.appcompat:appcompat:1.0.2"
         const val fragment = "androidx.fragment:fragment:1.0.0"
         const val transition = "androidx.transition:transition:1.0.0"
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.0.0"
+        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha02"
         const val dynamicAnimation = "androidx.dynamicanimation:dynamicanimation:1.0.0"
 
         const val material = "com.google.android.material:material:1.0.0"

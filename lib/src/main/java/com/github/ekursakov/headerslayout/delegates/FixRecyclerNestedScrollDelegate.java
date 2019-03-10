@@ -10,7 +10,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FixRecyclerNestedScrollDelegate extends DelegatedNestedScrollView.DefaultDelegate {
+public class FixRecyclerNestedScrollDelegate implements DelegatedNestedScrollView.Delegate {
     @Override
     public boolean onNestedPreScroll(@NonNull NestedScrollView view,
                                      @NonNull View target,

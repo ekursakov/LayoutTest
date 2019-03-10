@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
-import com.github.ekursakov.headerslayout.HeadersLayout
+import com.github.ekursakov.headerslayout.HeadersLayout3
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -116,8 +116,8 @@ class MainActivity : AppCompatActivity() {
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private val View.uberLayoutParams: HeadersLayout.LayoutParams
-        get() = layoutParams as HeadersLayout.LayoutParams
+    private val View.uberLayoutParams: HeadersLayout3.LayoutParams
+        get() = layoutParams as HeadersLayout3.LayoutParams
 
     private fun Int.dp(): Int {
         val density = resources.displayMetrics.density
