@@ -75,28 +75,6 @@ public class HeadersLayout3 extends DelegatedNestedScrollView {
     }
     //endregion
 
-    //region LayoutParams
-    @Override
-    protected boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        return layoutParams instanceof HeadersLayout3.LayoutParams;
-    }
-
-    @Override
-    protected HeadersLayout3.LayoutParams generateDefaultLayoutParams() {
-        return new HeadersLayout3.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, false, 0, false);
-    }
-
-    @Override
-    public HeadersLayout3.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new HeadersLayout3.LayoutParams(getContext(), attrs);
-    }
-
-    @Override
-    protected HeadersLayout3.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
-        return generateDefaultLayoutParams();
-    }
-
-    //endregion
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
